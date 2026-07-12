@@ -1487,6 +1487,10 @@ app.post("/api/expenses/:id/review", authenticateUser, (req, res) => {
   res.json(expense);
 });
 
-app.listen(PORT, () => {
-  console.log(`\n  🚀 TransitOps backend running on http://localhost:${PORT}`);
-});
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`\n  🚀 TransitOps backend running on http://localhost:${PORT}`);
+  });
+}
+
+module.exports = app;

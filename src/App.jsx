@@ -49,7 +49,7 @@ function App() {
         headers["x-user-emp"] = user.employeeId;
       }
 
-      const res = await fetch("http://localhost:3001/api/state", { headers });
+      const res = await fetch("/api/state", { headers });
       if (!res.ok) throw new Error("Failed to synchronize state with server registry.");
       const data = await res.json();
       setState(data);

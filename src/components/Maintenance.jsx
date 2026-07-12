@@ -21,7 +21,7 @@ export default function Maintenance({ user, state, onUpdateState }) {
       if (user.role === "Dispatcher" || user.role === "Safety Officer") return;
       setIsIntelligenceLoading(true);
       try {
-        const res = await fetch("http://localhost:3001/api/maintenance/intelligence", {
+        const res = await fetch("/api/maintenance/intelligence", {
           headers: { "x-user-role": user.role, "x-user-emp": user.employeeId }
         });
         const data = await res.json();
@@ -42,7 +42,7 @@ export default function Maintenance({ user, state, onUpdateState }) {
 
     try {
       const payload = { vehicleId, serviceType, description, startDate, expectedCompletion, cost: canViewFinancials ? Number(cost) : 0 };
-      const res = await fetch("http://localhost:3001/api/maintenance", {
+      const res = await fetch("/api/maintenance", {
         method: "POST",
         headers: { "Content-Type": "application/json", "x-user-role": user.role, "x-user-emp": user.employeeId },
         body: JSON.stringify(payload)
@@ -60,7 +60,7 @@ export default function Maintenance({ user, state, onUpdateState }) {
   const handleCompleteMaintenance = async (id) => {
     if (!canManage) return;
     try {
-      const res = await fetch(`http://localhost:3001/api/maintenance/${id}/complete`, {
+      const res = await fetch(`/api/maintenance/${id}/complete`, {
         method: "POST",
         headers: { "x-user-role": user.role, "x-user-emp": user.employeeId }
       });

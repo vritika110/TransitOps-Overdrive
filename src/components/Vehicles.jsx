@@ -23,7 +23,7 @@ export default function Vehicles({ user, state, onUpdateState }) {
     if (!canManage) return;
 
     try {
-      const res = await fetch("http://localhost:3001/api/vehicles", {
+      const res = await fetch("/api/vehicles", {
         method: "POST",
         headers: { "Content-Type": "application/json", "x-user-role": user.role, "x-user-emp": user.employeeId },
         body: JSON.stringify(formData)

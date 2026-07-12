@@ -10,7 +10,7 @@ export default function Admin({ user, state, onUpdateState }) {
     setVerificationResult(null);
     setVerifyingBlock(0);
     try {
-      const res = await fetch("http://localhost:3001/api/audit/verify", {
+      const res = await fetch("/api/audit/verify", {
         headers: { "x-user-role": user.role, "x-user-emp": user.employeeId }
       });
       const data = await res.json();

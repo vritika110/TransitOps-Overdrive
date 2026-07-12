@@ -72,7 +72,7 @@ export default function Finance({ user, state, onUpdateState }) {
 
   const handleReviewAnomaly = async (id, status) => {
     try {
-      const res = await fetch(`http://localhost:3001/api/expenses/${id}/review`, {
+      const res = await fetch(`/api/expenses/${id}/review`, {
         method: "POST",
         headers: { "Content-Type": "application/json", "x-user-role": user.role, "x-user-emp": user.employeeId },
         body: JSON.stringify({ reviewStatus: status })
@@ -90,7 +90,7 @@ export default function Finance({ user, state, onUpdateState }) {
     if (!canManage) return;
 
     try {
-      const res = await fetch("http://localhost:3001/api/expenses", {
+      const res = await fetch("/api/expenses", {
         method: "POST",
         headers: { "Content-Type": "application/json", "x-user-role": user.role, "x-user-emp": user.employeeId },
         body: JSON.stringify({ category, amount: Number(amount), date, vehicleId, description })

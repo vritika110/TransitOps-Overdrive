@@ -30,7 +30,7 @@ export default function FleetMap({ user, state }) {
     setTrackedTrip(null);
     
     try {
-      const res = await fetch(`http://localhost:3001/api/trips/track/${tokenInput.trim()}`);
+      const res = await fetch(`/api/trips/track/${tokenInput.trim()}`);
       const data = await res.json();
       
       if (!res.ok) {

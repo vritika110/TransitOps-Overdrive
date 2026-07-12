@@ -33,7 +33,7 @@ export default function Trips({ user, state, onUpdateState }) {
     if (canViewFinancials && formData.plannedDistance && formData.vehicleId) {
       const fetchEstimate = async () => {
         try {
-          const res = await fetch("http://localhost:3001/api/trips/price-estimate", {
+          const res = await fetch("/api/trips/price-estimate", {
             method: "POST",
             headers: { "Content-Type": "application/json", "x-user-role": user.role, "x-user-emp": user.employeeId },
             body: JSON.stringify({ distance: formData.plannedDistance, vehicleId: formData.vehicleId })
@@ -65,7 +65,7 @@ export default function Trips({ user, state, onUpdateState }) {
         payload.revenue = 1000; 
       }
 
-      const res = await fetch("http://localhost:3001/api/trips", {
+      const res = await fetch("/api/trips", {
         method: "POST",
         headers: { "Content-Type": "application/json", "x-user-role": user.role, "x-user-emp": user.employeeId },
         body: JSON.stringify(payload)
@@ -84,7 +84,7 @@ export default function Trips({ user, state, onUpdateState }) {
   const handleDispatch = async (tripId) => {
     if (!canManage) return;
     try {
-      const res = await fetch(`http://localhost:3001/api/trips/${tripId}/dispatch`, {
+      const res = await fetch(`/api/trips/${tripId}/dispatch`, {
         method: "POST", headers: { "x-user-role": user.role, "x-user-emp": user.employeeId }
       });
       const data = await res.json();
@@ -99,7 +99,7 @@ export default function Trips({ user, state, onUpdateState }) {
     e.preventDefault();
     setModalError(null);
     try {
-      const res = await fetch(`http://localhost:3001/api/trips/${selectedTrip.id}/complete`, {
+      const res = await fetch(`/api/trips/${selectedTrip.id}/complete`, {
         method: "POST",
         headers: { "Content-Type": "application/json", "x-user-role": user.role, "x-user-emp": user.employeeId },
         body: JSON.stringify(completionData)
@@ -117,7 +117,7 @@ export default function Trips({ user, state, onUpdateState }) {
     e.preventDefault();
     setModalError(null);
     try {
-      const res = await fetch(`http://localhost:3001/api/trips/${selectedTrip.id}/cancel`, {
+      const res = await fetch(`/api/trips/${selectedTrip.id}/cancel`, {
         method: "POST",
         headers: { "Content-Type": "application/json", "x-user-role": user.role, "x-user-emp": user.employeeId },
         body: JSON.stringify({ cancellationReason })
@@ -141,7 +141,7 @@ export default function Trips({ user, state, onUpdateState }) {
     setActiveModal('smart-assign');
     
     try {
-      const res = await fetch("http://localhost:3001/api/trips/recommendations", {
+      const res = await fetch("/api/trips/recommendations", {
         method: "POST",
         headers: { "Content-Type": "application/json", "x-user-role": user.role, "x-user-emp": user.employeeId },
         body: JSON.stringify({

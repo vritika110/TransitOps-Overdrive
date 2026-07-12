@@ -8,7 +8,7 @@ export default function TripTracker({ token }) {
   useEffect(() => {
     const fetchTrip = async () => {
       try {
-        const res = await fetch(`http://localhost:3001/api/trips/track/${token}`);
+        const res = await fetch(`/api/trips/track/${token}`);
         const data = await res.json();
         
         if (!res.ok) {

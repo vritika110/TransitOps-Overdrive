@@ -22,7 +22,7 @@ export default function Drivers({ user, state, onUpdateState }) {
     if (!canManage) return;
 
     try {
-      const res = await fetch("http://localhost:3001/api/drivers", {
+      const res = await fetch("/api/drivers", {
         method: "POST",
         headers: { "Content-Type": "application/json", "x-user-role": user.role, "x-user-emp": user.employeeId },
         body: JSON.stringify(formData)
